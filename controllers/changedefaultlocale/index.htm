@@ -1,0 +1,23 @@
+<?= Form::open(['class' => 'layout']) ?>
+<div class="layout-row">
+    <div class="form-group span-left">
+        <select
+            name="newDefault"
+            class="form-control custom-select select-no-search">
+            <option value="">Select the new default locale</option>
+            <?php foreach ($availableLocales as $code => $name): ?>
+                <option value="<?= $code ?>"
+                ><?= $name ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <div class="form-group span-left">
+        <button
+            type="button"
+            data-request="onChangeDefaultLocale"
+            class="btn btn-default">
+            Change the default locale
+        </button>
+    </div>
+</div>
+<?= Form::close() ?>
