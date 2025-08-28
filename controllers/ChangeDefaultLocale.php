@@ -89,7 +89,7 @@ class ChangeDefaultLocale extends Controller
 
             foreach($new_default_texts as $field => $value) {
                 $old_default_texts[$field] = $element->$field;
-                if (trim($value)) {
+                if (!empty($value)) {
                     $element->$field = $value;
                 }
             }
@@ -102,7 +102,7 @@ class ChangeDefaultLocale extends Controller
                     ->where('model_type', $model_type)
                     ->where('model_id', $model_id)
                     ->where('locale', $new_default)
-                    ->update(['locale' => $old_default, 'attribute_data' => json_encode($old_default_texts)]);
+                    ->update(['locale' => $old_default, 'attribute_data' => json_encode($old_default_texts, JSON_UNESCAPED_UNICODE)]);
 
             } catch (\Exception $e) {
                 $errors++;
